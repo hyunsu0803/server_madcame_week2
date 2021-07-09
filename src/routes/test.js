@@ -48,4 +48,8 @@ router.get("/signup", (req,res) =>{
     });
 });
 
+router.get("/getall", (req,res) => {
+    res.status(200).send();
+});
+
 module.exports = router;

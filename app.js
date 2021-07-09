@@ -5,6 +5,7 @@ const path = require("path");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const testRouter = require('./src/routes/test');
+const restRouter = require('./src/routes/rest');
 
 const dbURL = 'mongodb://localhost:27018'
 // 익스프레스 객체 생성
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+
 // 기본 포트를 app 객체에 속성으로 설정
 app.set('port', process.env.PORT || 80);
 
@@ -37,6 +39,7 @@ app.get('/', (req, res) => {
 
 //router 연결
 app.use('/test', testRouter);
+app.use('/rest', restRouter);
 
 // Express 서버 시작
 http.createServer(app).listen(app.get('port'), function(){
