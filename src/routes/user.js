@@ -29,6 +29,14 @@ router.post("/addfavorite", (req, res) => {
     
 });
 
+router.get("/test",(req,res)=>{
+    const id = req.body.id;
+    const res = req.body.res;
+    db.addFavorite(id,res,()=>{
+        res.status(200).send("test done");
+    })
+});
+
 router.poast
 
 module.exports = router;

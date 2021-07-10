@@ -29,9 +29,14 @@ function deleteAll(callback) {
 function addFavorite(id,res,callback){
     UserModel.findOne({ id : id}, (error,result) => {
         if(result.length!=0){
-            
-        
+            result.favorite.forEach((value)=>{
+                if(value==res){
+                    callback;
+                }
+            });
 
+            const test = result.favorite.concat([res]);
+            UserModel.updateOne({id:id},{favorite:test},callback)
 
         }else{
             console.log("id not found");

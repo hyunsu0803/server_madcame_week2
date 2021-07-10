@@ -11,7 +11,10 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    favorite: [String]
+    favorite: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "rest"
+    }]
 });
 
 const UserModel = mongoose.model("test", UserSchema);
