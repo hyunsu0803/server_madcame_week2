@@ -11,6 +11,14 @@ function getAll(callback) {
 
 }
 
+function getOne(id,callback) {
+    
+    RestModel.findOne({ _id : id }, (error,result) => {
+        callback(result);
+    });
+
+}
+
 function addOne(callback){
     const newItem = new RestModel({
         name: "test name",
@@ -28,6 +36,7 @@ function deleteAll(callback) {
 
 module.exports = {
     getAll,
+    getOne,
     addOne,
     deleteAll
   };

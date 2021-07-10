@@ -22,6 +22,12 @@ router.get("/getall", (req,res) => {
     db.getAll((item) => {res.json(item)
     });
 });
+
+router.post("/getone", (req,res) => {
+    db.getOne(req.body.id,(item) => {res.json(item)
+    });
+});
+
 router.get("/delete", (req,res) => {
     db.deleteAll(() =>{
         console.log("deleted")

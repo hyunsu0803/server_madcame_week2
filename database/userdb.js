@@ -2,18 +2,17 @@
 
 const UserModel = require("../src/models/userModel");
 
-function add(id,pwd, callback) {
+function add(id,name, callback) {
 
     const newItem = new UserModel({
         id: id,
-        pwd: pwd,
-        T_F: true,
-        count: (pwd).length
+        name: name,
     });
     newItem.save((error, result) => {
         callback(result);
     });
 }
+
 function getAll(callback) {
     
     UserModel.find({}, (error,result) => {
@@ -22,7 +21,7 @@ function getAll(callback) {
 
 }
 function deleteAll(callback) {
-    UserModel.deleteMany({T_F: true}, (error)=> {
+    UserModel.deleteMany({}, (error)=> {
     });
 }
 module.exports = {
