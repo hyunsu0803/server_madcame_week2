@@ -4,7 +4,7 @@ const http = require('http');
 const path = require("path");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const testRouter = require('./src/routes/test');
+const userRouter = require('./src/routes/user');
 const restRouter = require('./src/routes/rest');
 
 const dbURL = 'mongodb://localhost:27018'
@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
 });
 
 //router 연결
-app.use('/test', testRouter);
+app.use('/user', userRouter);
 app.use('/rest', restRouter);
 
 // Express 서버 시작

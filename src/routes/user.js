@@ -1,5 +1,5 @@
 const express = require("express");
-const db = require("../../database/testdb");
+const db = require("../../database/userdb");
 const router = express.Router();
 
 //ex) http://172.10.18.179/test/add/id1?pwd=1234

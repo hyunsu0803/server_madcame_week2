@@ -1,6 +1,6 @@
 //Test용 DB
 
-const UserModel = require("../src/models/test");
+const UserModel = require("../src/models/userModel");
 
 function add(id,pwd, callback) {
 

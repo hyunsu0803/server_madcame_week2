@@ -31,35 +31,13 @@ router.get("/delete", (req,res) => {
 
 
 
-
-/*
-fs=require('fs');
-var buildCategories=fs.readFile("../json/restList",'utf8',function(err,data){          
-    if (err) {
-        console.log("fs error");
-        return
-    }
-    console.log("fs start");
-    var datafromfile=JSON.parse(data);
-    data.forEach(function(obj){
-       var catOb=new RestModel(obj)
-       catOb.save(function(err,doc){return});
-    })
-});*/
-
 //To initialize when the Category collection is empty
 RestModel.findOne({},function(err,doc){
     if(!doc){
        //Collection is empty
        //build fomr file
        console.log("wow");
-       /*var test_api = new RestModel({name:"tesa", contact:"123-1242"});
-        test_api.save(() => {
-            console.log("added");
-        });*/
 
-        //const jsonFile = fs.readFileSync(path.dirname(__filename)+'/restList.json','utf8');
-        //console.log(jsonFile);
         const mypath = path.dirname(__filename)+'/restList.json'
         fs.readFile(mypath,'utf8',function(err,data){          
             if (err) {

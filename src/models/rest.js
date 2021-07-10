@@ -2,7 +2,16 @@
 const mongoose = require("mongoose");
 const RestSchema = new mongoose.Schema({
     name: String,
-    contact: String
+    contact: String,
+    category: String,
+    rate: {
+        type: Number,
+        default: 0
+    },
+    rateNum: {
+        type: Number,
+        default: 0
+    }
 });
 
 const RestModel = mongoose.model("rest", RestSchema);
