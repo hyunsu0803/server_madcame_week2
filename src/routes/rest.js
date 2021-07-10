@@ -1,6 +1,6 @@
 const express = require("express");
 const db = require("../../database/restdb");
-const RestModel = require("../models/rest");
+const RestModel = require("../models/restModel");
 const router = express.Router();
 const path = require('path');
 fs = require('fs');

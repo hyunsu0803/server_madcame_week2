@@ -1,6 +1,6 @@
 //Test용 DB
 
-const RestModel = require("../src/models/rest");
+const RestModel = require("../src/models/restModel");
 
 
 function getAll(callback) {

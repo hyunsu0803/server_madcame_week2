@@ -28,15 +28,12 @@ router.get("/all", (req, res) => {
 
 });
 router.post("/signup", (req, res) => {
-    /*db.getAll((item) => {res.json(item)
-    });*/
     db.add(
         req.body.name, 
         req.body.password,
         ()=> {
         res.status(200).send();
     });
-    //res.status(200).send();
 });
 
 router.get("/signup", (req,res) =>{
