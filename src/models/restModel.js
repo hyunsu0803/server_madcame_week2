@@ -11,7 +11,8 @@ const RestSchema = new mongoose.Schema({
     rateNum: {
         type: Number,
         default: 0
-    }
+    },
+    photoURL: String
 });
 
 const RestModel = mongoose.model("rest", RestSchema);

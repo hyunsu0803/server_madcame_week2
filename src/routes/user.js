@@ -11,16 +11,12 @@ router.post("/add", (req,res) =>{
         res.status(200).send();
     });
 });
+
 router.get("/delete", (req,res) => {
     db.deleteAll(
         ()=> {
             res.status(200).send();
     });
-});
-router.get("/", (req, res) => {
-    /*db.getAll((item) => {res.json(item)
-    });*/
-    res.status(200).send();
 });
 router.get("/all", (req, res) => {
     db.getAll((item) => {res.json(item)
@@ -29,17 +25,10 @@ router.get("/all", (req, res) => {
 });
 
 
-router.get("/signup", (req,res) =>{
-    db.add(
-        req.body.name, 
-        req.body.password,
-        ()=> {
-        res.status(200).send();
-    });
+router.post("/addfavorite", (req, res) => {
+    
 });
 
-router.get("/getall", (req,res) => {
-    res.status(200).send();
-});
+router.poast
 
 module.exports = router;

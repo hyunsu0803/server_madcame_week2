@@ -9,20 +9,39 @@ function getAll(callback) {
     });
 }
 
-function add(title,ratio,rest,user,callback){
+function add(title,content,ratio,rest,user,callback){
+    var ratio_num = Number(ratio);
+
     const newItem = new PostModel({
         title: title,
-        rate: ratio,
+        content: content,
+        rate: ratio_num,
         rest: rest,
         writer: user
     });
 
-    const query = RestModel.findOne({_id: rest});
-    var mRatioNum = query[rateNum];
-    mRatioNum = mRatioNum+1;
+    RestModel.findOne({ _id : rest}, (error,result) => {
+        if(result.length!=0){
+            var num  = result.rateNum;
+            console.log(result);
+            console.log("onto mars");
+            console.log(result.rateNum);
 
-    var mRatio = Number(ratio);
-    RestModel.updateOne({_id : rest},{rate: mRatio, rateNum: mRatioNum});
+            var myRate = result.rate*result.rateNum + ratio_num;
+            var myRateNum = result.rateNum+1;
+            myRate =myRate/myRateNum;
+
+            console.log(myRate);
+            console.log(myRateNum);
+
+            RestModel.updateOne({_id : rest},{rate: myRate, rateNum: myRateNum},(error)=>{});
+
+        }else{
+            console.log("not found");
+        }
+    });
+
+    
 
     newItem.save((error, result) => {
         callback(result);

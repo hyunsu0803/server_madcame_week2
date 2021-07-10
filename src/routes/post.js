@@ -5,7 +5,8 @@ const router = express.Router();
 //ex) http://172.10.18.179/test/add/id1?pwd=1234
 router.post("/add", (req,res) =>{
     db.add(
-        req.body.title, 
+        req.body.title,
+        req.body.content, 
         req.body.rate,
         req.body.rest,
         req.body.user,

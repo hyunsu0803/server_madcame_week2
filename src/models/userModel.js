@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    count: Number
+    favorite: [String]
 });
 
 const UserModel = mongoose.model("test", UserSchema);
