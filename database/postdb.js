@@ -1,5 +1,6 @@
 const PostModel = require("../src/models/postModel");
 const RestModel = require("../src/models/restModel");
+const fs = require('fs');
 
 
 function getAll(callback) {
@@ -52,8 +53,29 @@ function deleteAll(callback) {
     });
 };
 
+
+function getPhoto(title, callback){
+    PostModel.findOne({ title : title}, (error,result) => {
+        if(result){//maybe should be changed
+                console.log("result success")
+                console.log(result.title);
+                fs.readFile(__dirname +"/../"+result.postImg,(err,data)=>{
+                    console.log(__dirname);
+                    if(err) console.log(err)
+                    if(!data) console.log("data null")
+                    console.log(data);
+                    callback(data);
+                })
+        }else{
+            console.log("id not found");
+        }
+    });
+
+}
+
 module.exports = {
     getAll,
     add,
-    deleteAll
+    deleteAll,
+    getPhoto
   };

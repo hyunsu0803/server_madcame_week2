@@ -23,7 +23,9 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: "true"
     },
-    postImg: String
+    postImg: {
+        type: String
+    }
 });
 
 const PostModel = mongoose.model("post", PostSchema);
