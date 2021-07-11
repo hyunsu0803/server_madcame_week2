@@ -34,7 +34,9 @@ function add(title,content,ratio,rest,user,callback){
             console.log(myRate);
             console.log(myRateNum);
 
-            RestModel.updateOne({_id : rest},{rate: myRate, rateNum: myRateNum},(error)=>{});
+            RestModel.updateOne({_id : rest},{rate: myRate, rateNum: myRateNum},()=>{
+                newItem.save(callback);
+            });
 
         }else{
             console.log("not found");
@@ -43,9 +45,7 @@ function add(title,content,ratio,rest,user,callback){
 
     
 
-    newItem.save((error, result) => {
-        callback(result);
-    });
+    
 };
 
 function deleteAll(callback) {

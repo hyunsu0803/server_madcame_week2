@@ -5,13 +5,21 @@ const RestModel = require("../src/models/restModel");
 
 function add(id,name, callback) {
 
-    const newItem = new UserModel({
-        id: id,
-        name: name,
-    });
-    newItem.save((error, result) => {
-        callback(result);
-    });
+    UserModel.findOne({id:id},(error,result)=>{
+        if(result) callback;
+        else if(error) callback;
+        else{
+            const newItem = new UserModel({
+                id: id,
+                name: name,
+            });
+            newItem.save((error, result) => {
+                callback(result);
+            });
+        }
+    })
+
+
 }
 
 function getAll(callback) {
@@ -44,9 +52,23 @@ function addFavorite(id,res,callback){
     });
 }
 
+function getFavorites(id,callback){
+    UserModel.findOne({ id : id}, (error,result) => {
+        if(result.length!=0){
+            const arr = result.favorite
+
+        }else{
+            console.log("id not found");
+            callback(400);
+        }
+    });
+}
+
+
 module.exports = {
     add,
     getAll,
     addFavorite,
+    getFavorites,
     deleteAll
   };

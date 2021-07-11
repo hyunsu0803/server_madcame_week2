@@ -26,17 +26,16 @@ router.get("/all", (req, res) => {
 
 
 router.post("/addfavorite", (req, res) => {
-    
-});
-
-router.get("/test",(req,res)=>{
-    const id = req.body.id;
-    const res = req.body.res;
-    db.addFavorite(id,res,()=>{
+    db.addFavorite(req.body.id,req.body.res,()=>{
         res.status(200).send("test done");
     })
 });
 
-router.poast
+router.post("/getfavorites",(req,res)=>{
+    db.getFavorites(req.body.id,(item)=>{
+        res.json(item);
+    })
+});
+
 
 module.exports = router;
