@@ -23,6 +23,10 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: "true"
     },
+    restName: {
+        type: String,
+        required: "true"
+    },
     postImg: {
         type: String
     }

@@ -13,14 +13,6 @@ function getAll(callback) {
 function add(title,content,ratio,rest,user,postImg,callback){
     var ratio_num = Number(ratio);
 
-    const newItem = new PostModel({
-        title: title,
-        content: content,
-        rate: ratio_num,
-        rest: rest,
-        writer: user,
-        postImg: postImg
-    });
 
     RestModel.findOne({ _id : rest}, (error,result) => {
         if(result.length!=0){
@@ -29,6 +21,16 @@ function add(title,content,ratio,rest,user,postImg,callback){
             console.log("onto mars");
             console.log(result);
             console.log(result.rateNum);
+
+            const newItem = new PostModel({
+                title: title,
+                content: content,
+                rate: ratio_num,
+                rest: rest,
+                restName: result.name,
+                writer: user,
+                postImg: postImg
+            });
 
             var myRate = result.rate*result.rateNum + ratio_num;
             var myRateNum = result.rateNum+1;
