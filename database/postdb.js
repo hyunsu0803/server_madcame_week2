@@ -9,7 +9,7 @@ function getAll(callback) {
     });
 }
 
-function add(title,content,ratio,rest,user,callback){
+function add(title,content,ratio,rest,user,postImg,callback){
     var ratio_num = Number(ratio);
 
     const newItem = new PostModel({
@@ -17,14 +17,16 @@ function add(title,content,ratio,rest,user,callback){
         content: content,
         rate: ratio_num,
         rest: rest,
-        writer: user
+        writer: user,
+        postImg: postImg
     });
 
     RestModel.findOne({ _id : rest}, (error,result) => {
         if(result.length!=0){
             var num  = result.rateNum;
-            console.log(result);
+            
             console.log("onto mars");
+            console.log(result);
             console.log(result.rateNum);
 
             var myRate = result.rate*result.rateNum + ratio_num;
@@ -43,9 +45,6 @@ function add(title,content,ratio,rest,user,callback){
         }
     });
 
-    
-
-    
 };
 
 function deleteAll(callback) {

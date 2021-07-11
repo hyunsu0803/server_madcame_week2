@@ -36,7 +36,7 @@ function deleteAll(callback) {
 
 function addFavorite(id,res,callback){
     UserModel.findOne({ id : id}, (error,result) => {
-        if(result.length!=0){
+        if(result.length!=0){//maybe should be changed
             result.favorite.forEach((value)=>{
                 if(value==res){
                     callback;

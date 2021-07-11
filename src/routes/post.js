@@ -1,6 +1,8 @@
 const express = require("express");
 const db = require("../../database/postdb");
 const router = express.Router();
+var multer = require('multer')
+var upload = multer({dest: 'uploads/'})
 
 //ex) http://172.10.18.179/test/add/id1?pwd=1234
 router.post("/add", (req,res) =>{
@@ -10,6 +12,25 @@ router.post("/add", (req,res) =>{
         req.body.rate,
         req.body.rest,
         req.body.user,
+        ()=> {
+        res.status(200).send();
+    });
+});
+
+router.post("/addtest",upload.single('postImg') ,(req,res) =>{
+    console.log("addtest start");
+    //console.log(req);
+    console.log("single data")
+    console.log(req.body);
+    console.log(req.file);
+    console.log(req.postImg);
+    db.add(
+        req.body.title,
+        req.body.content, 
+        req.body.rate,
+        req.body.rest,
+        req.body.user,
+        req.file.path,
         ()=> {
         res.status(200).send();
     });
