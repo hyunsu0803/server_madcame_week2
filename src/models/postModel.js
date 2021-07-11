@@ -23,6 +23,9 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: "true"
     },
+    restName:{
+        type: String
+    },
     postImg: {
         type: String
     }
