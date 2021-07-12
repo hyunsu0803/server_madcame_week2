@@ -23,9 +23,14 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: "true"
     },
+<<<<<<< HEAD
     restName: {
         type: String,
         required: "true"
+=======
+    restName:{
+        type: String
+>>>>>>> 0e94b78c7b56638a16240df499328feaf4e07050
     },
     postImg: {
         type: String

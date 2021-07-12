@@ -20,6 +20,10 @@ function getByRest(rest, callback) {
 function add(title,content,ratio,rest,user,postImg,callback){
     var ratio_num = Number(ratio);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0e94b78c7b56638a16240df499328feaf4e07050
 
     RestModel.findOne({ _id : rest}, (error,result) => {
         if(result){
