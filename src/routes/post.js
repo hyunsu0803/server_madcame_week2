@@ -18,6 +18,13 @@ router.post("/add", (req,res) =>{
     });
 });
 
+router.get("/delete", (req,res) =>{
+    db.deleteAll(
+        ()=> {
+            res.status(200).send();
+    });
+});
+
 router.post("/addtest",upload.single('postImg') ,(req,res) =>{
     console.log("addtest start");
     //console.log(req);
@@ -37,8 +44,8 @@ router.post("/addtest",upload.single('postImg') ,(req,res) =>{
     });
 });
 
-router.post("/get", (req,res)=>{
-    db.getPhoto(req.body.title,(item)=>{
+router.post("/getphoto", (req,res)=>{
+    db.getPhoto(req.body._id,(item)=>{
         console.log("res end start")
         res.end(item)
     })

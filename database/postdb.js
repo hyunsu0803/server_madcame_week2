@@ -15,7 +15,7 @@ function add(title,content,ratio,rest,user,postImg,callback){
 
 
     RestModel.findOne({ _id : rest}, (error,result) => {
-        if(result.length!=0){
+        if(result){
             var num  = result.rateNum;
             
             console.log("onto mars");
@@ -56,8 +56,10 @@ function deleteAll(callback) {
 };
 
 
-function getPhoto(title, callback){
-    PostModel.findOne({ title : title}, (error,result) => {
+function getPhoto(id, callback){
+    console.log("getPhoto id is");
+    console.log(id);
+    PostModel.findOne({ _id : id}, (error,result) => {
         if(result){//maybe should be changed
                 console.log("result success")
                 console.log(result.title);
