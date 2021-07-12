@@ -25,6 +25,7 @@ function add(id,name, callback) {
 function getAll(callback) {
     
     UserModel.find({}, (error,result) => {
+        console.log(result);
         callback(result);
     });
 
@@ -36,7 +37,7 @@ function deleteAll(callback) {
 
 function addFavorite(id,res,callback){
     UserModel.findOne({ id : id}, (error,result) => {
-        if(result.length!=0){//maybe should be changed
+        if(result!=null){//maybe should be changed
             
             const found = result.favorite.find((item)=>{
                 return String(item)===res})
@@ -60,15 +61,26 @@ function addFavorite(id,res,callback){
 }
 
 function getFavorites(id,callback){
-    UserModel.findOne({ id : id}, (error,result) => {
+    UserModel.findOne({id:id}).populate('favorite').exec((err,data)=>{
+        //console.log(data)
+        console.log(data.favorite);
+        callback(data.favorite);
+        /*data.favorite.forEach((item)=>{
+            console.log(item);
+            callback(item)
+        })*/
+    })
+    
+    /*UserModel.findOne({ id : id}, (error,result) => {
         if(result.length!=0){
+            console.log("getFavorites in");
             const arr = result.favorite
 
         }else{
-            console.log("id not found");
+            console.log("id not found in getFavorites");
             callback(400);
         }
-    });
+    });*/
 }
 
 
