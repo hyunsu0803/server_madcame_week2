@@ -26,8 +26,8 @@ router.get("/all", (req, res) => {
 
 
 router.post("/addfavorite", (req, res) => {
-    db.addFavorite(req.body.id,req.body.res,()=>{
-        res.status(200).send("test done");
+    db.addFavorite(req.body.id,req.body.res,(code)=>{
+        res.status(code).send("test done");
     })
 });
 

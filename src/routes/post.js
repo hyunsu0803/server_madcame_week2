@@ -56,4 +56,9 @@ router.get("/getall", (req,res) => {
     });
 });
 
+router.post("/getbyrest", (req,res) => {
+    db.getByRest(req.body.rest,(item) => {res.json(item)
+    });
+});
+
 module.exports = router;

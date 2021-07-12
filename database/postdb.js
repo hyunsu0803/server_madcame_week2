@@ -10,6 +10,13 @@ function getAll(callback) {
     });
 }
 
+function getByRest(rest, callback) {
+    //id is res id
+    PostModel.find({rest: rest}, (error,result) => {
+        callback(result);
+    });
+}
+
 function add(title,content,ratio,rest,user,postImg,callback){
     var ratio_num = Number(ratio);
 
@@ -79,6 +86,7 @@ function getPhoto(id, callback){
 
 module.exports = {
     getAll,
+    getByRest,
     add,
     deleteAll,
     getPhoto
