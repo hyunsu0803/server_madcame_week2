@@ -45,7 +45,7 @@ router.post("/addtest",upload.single('postImg') ,(req,res) =>{
 });
 
 router.post("/getphoto", (req,res)=>{
-    db.getPhoto(req.body._id,(item)=>{
+    db.getPhoto(req.body.id,(item)=>{
         console.log("res end start")
         res.end(item)
     })
@@ -60,5 +60,10 @@ router.post("/getbyrest", (req,res) => {
     db.getByRest(req.body.rest,(item) => {res.json(item)
     });
 });
+
+router.post("/getone",(req,res)=>{
+    db.getByID(req.body.id,(item)=>{res.json(item)
+    })
+})
 
 module.exports = router;

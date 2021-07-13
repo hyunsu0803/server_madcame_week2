@@ -1,11 +1,23 @@
 const PostModel = require("../src/models/postModel");
 const RestModel = require("../src/models/restModel");
+const UserModel = require("../src/models/userModel");
 const fs = require('fs');
 
 
 function getAll(callback) {
     
     PostModel.find({}, (error,result) => {
+        callback(result);
+    });
+}
+
+function getByID(id,callback){
+    //id is res id
+    console.log("post found  Start")
+    PostModel.findOne({_id: id}, (error,result) => {
+        console.log("post found in getByID")
+        console.log(id)
+        console.log(result)
         callback(result);
     });
 }
@@ -29,26 +41,35 @@ function add(title,content,ratio,rest,user,postImg,callback){
             console.log(result);
             console.log(result.rateNum);
 
-            const newItem = new PostModel({
-                title: title,
-                content: content,
-                rate: ratio_num,
-                rest: rest,
-                restName: result.name,
-                writer: user,
-                postImg: postImg
-            });
+            UserModel.findOne({id:user},(err,res)=>{
 
-            var myRate = result.rate*result.rateNum + ratio_num;
-            var myRateNum = result.rateNum+1;
-            myRate =myRate/myRateNum;
 
-            console.log(myRate);
-            console.log(myRateNum);
+                const newItem = new PostModel({
+                    title: title,
+                    content: content,
+                    rate: ratio_num,
+                    rest: rest,
+                    restName: result.name,
+                    writer: user,
+                    writerName: res.name ,
+                    postImg: postImg
+                });
+    
+                var myRate = result.rate*result.rateNum + ratio_num;
+                var myRateNum = result.rateNum+1;
+                myRate =myRate/myRateNum;
+    
+                console.log(myRate);
+                console.log(myRateNum);
+    
+                RestModel.updateOne({_id : rest},{rate: myRate, rateNum: myRateNum},()=>{
+                    newItem.save(callback);
+                });
 
-            RestModel.updateOne({_id : rest},{rate: myRate, rateNum: myRateNum},()=>{
-                newItem.save(callback);
-            });
+
+            })
+
+
 
         }else{
             console.log("not found");
@@ -86,6 +107,7 @@ function getPhoto(id, callback){
 
 module.exports = {
     getAll,
+    getByID,
     getByRest,
     add,
     deleteAll,

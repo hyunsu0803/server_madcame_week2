@@ -19,6 +19,10 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: "true"
     },
+    writerName:{
+        type: String,
+        default: "default name"
+    },
     rest: {
         type: String,
         required: "true"
