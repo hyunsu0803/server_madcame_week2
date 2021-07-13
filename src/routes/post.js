@@ -66,4 +66,10 @@ router.post("/getone",(req,res)=>{
     })
 })
 
+router.post("/addlike",(req,res)=>{
+    db.addLike(req.body.post,req.body.user,(code)=>{
+        res.status(code).send();
+    })
+})
+
 module.exports = router;

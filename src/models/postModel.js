@@ -33,7 +33,15 @@ const PostSchema = new mongoose.Schema({
     },
     postImg: {
         type: String
-    }
+    },
+    likeNum:{
+        type: Number,
+        default:0
+    },
+    likes: [{
+        type: String,
+        ref: "test"//or user
+    }]
 });
 
 const PostModel = mongoose.model("post", PostSchema);

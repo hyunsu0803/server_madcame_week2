@@ -49,7 +49,6 @@ function addFavorite(id,res,callback){
                 const set = new Set(arr);
                 const test = [...set]
 
-
                 UserModel.updateOne({id:id},{favorite:test},()=>{})
                 callback(200)
             }
@@ -62,25 +61,10 @@ function addFavorite(id,res,callback){
 
 function getFavorites(id,callback){
     UserModel.findOne({id:id}).populate('favorite').exec((err,data)=>{
-        //console.log(data)
         console.log(data.favorite);
         callback(data.favorite);
-        /*data.favorite.forEach((item)=>{
-            console.log(item);
-            callback(item)
-        })*/
-    })
-    
-    /*UserModel.findOne({ id : id}, (error,result) => {
-        if(result.length!=0){
-            console.log("getFavorites in");
-            const arr = result.favorite
 
-        }else{
-            console.log("id not found in getFavorites");
-            callback(400);
-        }
-    });*/
+    })
 }
 
 
